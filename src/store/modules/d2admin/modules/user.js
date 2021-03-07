@@ -1,3 +1,5 @@
+import initMenu from '@/menu'
+
 export default {
   namespaced: true,
   state: {
@@ -33,6 +35,12 @@ export default {
         defaultValue: {},
         user: true
       }, { root: true })
+    },
+
+    async loadAndInitMenu ({ state, dispatch, commit }) {
+      await dispatch('load')
+      initMenu()
     }
+
   }
 }

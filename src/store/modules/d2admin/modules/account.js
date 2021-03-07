@@ -70,7 +70,7 @@ export default {
      */
     async load ({ dispatch }) {
       // 加载用户名
-      await dispatch('d2admin/user/load', null, { root: true })
+      await dispatch('d2admin/user/loadAndInitMenu', null, { root: true })
       // 加载主题
       await dispatch('d2admin/theme/load', null, { root: true })
       // 加载页面过渡效果设置
