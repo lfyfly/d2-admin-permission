@@ -20,7 +20,7 @@ function filterRoute (navConfig) {
       return checkRolePermission(item.meta.roles)
     } else {
       const filterChildren = filterRoute(item.children)
-      if (filterChildren.length > 1) {
+      if (filterChildren.length > 0) {
         item.children = filterRoute(item.children)
         return item
       } else {
