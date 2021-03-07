@@ -1,6 +1,8 @@
 import { uniqueId } from 'lodash'
 import store from '@/store'
 import { configForMenu } from '@/router/routes'
+import checkRolePermission from './checkRolePermission'
+
 /**
  * @description 给菜单数据补充上 path 字段
  * @description https://github.com/d2-projects/d2-admin/issues/209
@@ -9,16 +11,13 @@ import { configForMenu } from '@/router/routes'
 
 // 根据权限nav过滤
 function filterRoute (navConfig) {
-  const { roles, isSuperAdmin } = store.state.d2admin.user.info
+  const { isSuperAdmin } = store.state.d2admin.user.info
 
   if (isSuperAdmin) return navConfig
 
   return navConfig.filter(item => {
     if (!item.children && item.path) {
-      const targetRoles = item.meta.roles
-      if (!targetRoles) return true
-
-      return roles.some(item => targetRoles.includes(item))
+      return checkRolePermission(item.meta.roles)
     } else {
       const filterChildren = filterRoute(item.children)
       if (filterChildren.length > 1) {
