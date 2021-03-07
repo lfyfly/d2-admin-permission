@@ -15,7 +15,9 @@ function filterRoute (navConfig) {
 
   return navConfig.filter(item => {
     if (!item.children && item.path) {
-      const targetRoles = item.meta.roles || []
+      const targetRoles = item.meta.roles
+      if (!targetRoles) return true
+
       return roles.some(item => targetRoles.includes(item))
     } else {
       const filterChildren = filterRoute(item.children)
