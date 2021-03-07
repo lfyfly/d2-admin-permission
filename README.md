@@ -96,7 +96,7 @@ const system = {
 ```
 git clone https://github.com/lfyfly/d2-admin-start-kit-with-permission.git
 
-git checkout permission
+git checkout authkey-permission
 
 npm install
 
