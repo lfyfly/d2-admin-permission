@@ -25,7 +25,7 @@ const users = [
     name: 'User1',
     authKeys: {
       pages: ['/pages/page1', '/pages/page2', '/pages/page3'],
-      apis: ['/api/create', '/api/get', '/api/edit'] // 没有'/api/delete'
+      apis: ['/api/create', '/api/get', '/api/update'] // 没有'/api/delete'
     }
   }
 ]
