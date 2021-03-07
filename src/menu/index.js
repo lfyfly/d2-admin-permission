@@ -1,7 +1,7 @@
 import { uniqueId } from 'lodash'
 import store from '@/store'
 import { configForMenu } from '@/router/routes'
-import checkRolePermission from './checkRolePermission'
+import { checkPagePermission } from './checkAuthKeyPermission'
 
 /**
  * @description 给菜单数据补充上 path 字段
@@ -17,7 +17,7 @@ function filterRoute (navConfig) {
 
   return navConfig.filter(item => {
     if (!item.children && item.path) {
-      return checkRolePermission(item.meta.roles)
+      return checkPagePermission(item.meta.authKey)
     } else {
       const filterChildren = filterRoute(item.children)
       if (filterChildren.length > 1) {
@@ -47,6 +47,7 @@ export function getMenuConfig () {
 // 前提是用户信息已经写入vuex
 export default function initMenu () {
   const navConfig = getMenuConfig()
+
   // 设置顶栏菜单
   store.commit('d2admin/menu/headerSet', navConfig)
   // 设置侧边栏菜单

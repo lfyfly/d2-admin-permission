@@ -7,7 +7,7 @@ import 'nprogress/nprogress.css'
 
 import store from '@/store/index'
 import util from '@/libs/util.js'
-import checkRolePermission from '@/menu/checkRolePermission'
+import { checkPagePermission } from '@/menu/checkAuthKeyPermission'
 
 // 路由数据
 import routes from './routes'
@@ -49,7 +49,7 @@ router.beforeEach(async (to, from, next) => {
     const token = util.cookies.get('token')
     if (token && token !== 'undefined') {
       // 存在登录用户，检查权限
-      if (checkRolePermission(to.meta.roles)) {
+      if (checkPagePermission(to.meta.authKey)) {
         next()
       } else {
         NProgress.done()

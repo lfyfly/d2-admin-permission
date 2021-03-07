@@ -13,7 +13,7 @@ const system = {
       meta: {
         title: '页面1', // tab
         auth: true,
-        roles: ['user', 'admin']
+        authKey: '/pages/page1'
       },
       component: _import('demo/page1')
     },
@@ -24,7 +24,7 @@ const system = {
       meta: {
         title: '页面2',
         auth: true,
-        roles: ['user', 'admin']
+        authKey: '/pages/page2'
       },
       component: _import('demo/page2')
     },
@@ -35,7 +35,7 @@ const system = {
       meta: {
         title: '页面3',
         auth: true,
-        roles: ['user', 'admin']
+        authKey: '/pages/page3'
       },
       component: _import('demo/page3')
     }
