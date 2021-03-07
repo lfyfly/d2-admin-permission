@@ -177,3 +177,8 @@ const system = {
 }
 ```
 **Tip：配置完了，别忘了在`src/router/routes.js` 中导入，和导出configForMenu**
+
+
+#### 3. 使用`AuthContainer`控制按钮权限
+
+参考  `src/views/page1/index.vue` 和 `src/AuthContainer.vue`
