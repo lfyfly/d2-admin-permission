@@ -47,6 +47,19 @@ router.beforeEach(async (to, from, next) => {
     // 请根据自身业务需要修改
     const token = util.cookies.get('token')
     if (token && token !== 'undefined') {
+      const { roles, isSuperAdmin } = store.state.d2admin.user.info
+      if (isSuperAdmin) next()
+      const targetRoles = to.meta.roles
+      if (Array.isArray(targetRoles) && targetRoles.length > 0) {
+        if (roles.some(item => targetRoles.includes(item))) {
+          next()
+        } else {
+          NProgress.done()
+          alert('当前登录用户没有该页面权限')
+          return
+        }
+      }
+
       next()
     } else {
       // 没有登录的时候跳转到登录界面

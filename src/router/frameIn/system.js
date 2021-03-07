@@ -13,7 +13,7 @@ const system = {
       meta: {
         title: '角色管理',
         auth: true,
-        role: ['admin']
+        roles: ['admin']
       },
       component: _import('sys/roles')
     },
@@ -24,7 +24,7 @@ const system = {
       meta: {
         title: '管理员列表',
         auth: true,
-        role: ['admin']
+        roles: ['admin']
       },
       component: _import('sys/admins')
     }
