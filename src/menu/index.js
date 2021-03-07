@@ -16,8 +16,9 @@ function filterRoute (navConfig) {
   if (isSuperAdmin) return navConfig
 
   return navConfig.filter(item => {
+    const { meta = {} } = item
     if (!item.children && item.path) {
-      return checkRolePermission(item.meta.roles)
+      return checkRolePermission(meta.roles)
     } else {
       const filterChildren = filterRoute(item.children)
       if (filterChildren.length > 0) {
