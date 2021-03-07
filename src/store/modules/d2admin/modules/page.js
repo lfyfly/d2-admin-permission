@@ -145,6 +145,9 @@ export default {
       const opened = state.opened
       // 判断此页面是否已经打开 并且记录位置
       let pageOpendIndex = 0
+
+      console.log({ opened })
+
       const pageOpend = opened.find((page, index) => {
         const same = page.fullPath === fullPath
         pageOpendIndex = same ? index : pageOpendIndex

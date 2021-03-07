@@ -1,4 +1,7 @@
 import layoutHeaderAside from '@/layout/header-aside'
+import index from './frameIn/index'
+import pages from './frameIn/pages'
+import system from './frameIn/system'
 
 // 由于懒加载页面太多的话会造成webpack热更新太慢，所以开发环境不使用懒加载，只有生产环境使用懒加载
 const _import = require('@/libs/util.import.' + process.env.NODE_ENV)
@@ -13,42 +16,9 @@ const frameIn = [
     component: layoutHeaderAside,
     children: [
       // 首页
-      {
-        path: 'index',
-        name: 'index',
-        meta: {
-          auth: true
-        },
-        component: _import('system/index')
-      },
-      // 演示页面
-      {
-        path: 'page1',
-        name: 'page1',
-        meta: {
-          title: '页面 1',
-          auth: true
-        },
-        component: _import('demo/page1')
-      },
-      {
-        path: 'page2',
-        name: 'page2',
-        meta: {
-          title: '页面 2',
-          auth: true
-        },
-        component: _import('demo/page2')
-      },
-      {
-        path: 'page3',
-        name: 'page3',
-        meta: {
-          title: '页面 3',
-          auth: true
-        },
-        component: _import('demo/page3')
-      },
+      index,
+      ...system.children,
+      ...pages.children,
       // 系统 前端日志
       {
         path: 'log',
@@ -99,6 +69,8 @@ const errorPage = [
     component: _import('system/error/404')
   }
 ]
+
+export const configForMenu = [index, pages, system]
 
 // 导出需要显示菜单的
 export const frameInRoutes = frameIn
